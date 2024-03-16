@@ -1,0 +1,26 @@
+// this is enabling the single route for the cross origin resource sharing 
+
+app.options('*', cors()) // include before other routes
+app.get('/products', cors(), function (req, res, next) {
+    res.json({msg: 'This is CORS-enabled for a Single Route'})
+  })
+  app.get('/', (req, res) => {
+    res.send("this is a middleware function called ")
+});
+app.get('/check', (req, res) => {
+    res.send("this is a middleware function called ")
+});
+app.get('/index(.html)?', (req, res) => {
+    // Send the file using res.sendFile
+    console.log(__dirname)
+    res.sendFile(path.join(__dirname, '/public/img/viratkohli.jpeg'));
+});
+
+  // confuguring cors
+//   var corsOptions = {
+//     origin: 'http://www.google.com',
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// //   }
+//   app.get('/classes', cors(corsOptions), function (req, res, next) {
+//     res.json({msg: 'This is CORS-enabled for a Single Route'})
+//   })
